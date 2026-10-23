@@ -12,3 +12,19 @@ export function calcularTotales(items) {
   const total = redondear(subtotal + iva)
   return { subtotal, iva, total }
 }
+
+export function validarCantidad(cantidad, stock) {
+  if (!Number.isInteger(cantidad)) {
+    return { valida: false, error: 'La cantidad debe ser un número entero.' }
+  }
+  if (cantidad < 1) {
+    return { valida: false, error: 'La cantidad mínima es 1.' }
+  }
+  if (stock <= 0) {
+    return { valida: false, error: 'Producto agotado.' }
+  }
+  if (cantidad > stock) {
+    return { valida: false, error: `Solo hay ${stock} unidad(es) disponible(s).` }
+  }
+  return { valida: true, error: null }
+}
