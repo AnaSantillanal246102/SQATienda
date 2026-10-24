@@ -10,11 +10,7 @@ export default function CartPage() {
   const { items, cambiar, quitar, vaciar } = useCart()
   const navigate = useNavigate()
   const [confirmando, setConfirmando] = useState(false)
-  const dialogo = screen.getByRole('dialog')
 
-  fireEvent.click(
-    within(dialogo).getByRole('button', { name: 'Sí, vaciar' })
-  )
 
   if (items.length === 0) {
     return (

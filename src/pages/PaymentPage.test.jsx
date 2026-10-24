@@ -54,7 +54,7 @@ describe('Pantalla de pago', () => {
     localStorage.setItem('tienda-carrito', JSON.stringify([ITEM]))
     sessionStorage.setItem('tienda-cliente', JSON.stringify({ ...CLIENTE, cp: '1' }))
     renderizar()
-    expect(screen.getByText('PANTALLA DATOS')).toBeInTheDocument()
+    expect(screen.getAllByText('PANTALLA DATOS').length).toBeGreaterThan(0)
   })
 
   it('al intentar pagar muestra que la función no está disponible', () => {

@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
-    pool: 'threads',
+    pool: 'forks',
     maxWorkers: 1,
     isolate: false,
     globals: true,
