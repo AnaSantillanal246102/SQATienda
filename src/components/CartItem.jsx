@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { redondear, validarCantidad } from '../utils/cart'
 import { formatearMoneda } from '../utils/format'
@@ -7,6 +7,10 @@ export default function CartItem({ item, onCambiar, onQuitar }) {
   const [valor, setValor] = useState(String(item.cantidad))
   const [error, setError] = useState('')
 
+useEffect(() => {
+    setValor(String(item.cantidad))
+  }, [item.cantidad])
+  
   function manejarCambio(e) {
     const texto = e.target.value
     setValor(texto)

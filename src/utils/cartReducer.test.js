@@ -59,3 +59,37 @@ describe('validarCantidad (valores límite con stock = 5)', () => {
     expect(validarCantidad(1, 0).valida).toBe(false)
   })
 })
+describe('cartReducer · SINCRONIZAR', () => {
+  const enCarrito = [{ id: 6, nombre: 'Cable', precio: 99.99, stock: 40, imagen: '', cantidad: 10 }]
+  const sincronizar = (items, productos) =>
+    cartReducer(items, { type: 'SINCRONIZAR', productos })
+
+  it('quita productos que ya no existen en el catálogo', () => {
+    expect(sincronizar(enCarrito, [])).toEqual([])
+  })
+
+  it('quita productos que se agotaron', () => {
+    expect(sincronizar(enCarrito, [{ ...enCarrito[0], stock: 0 }])).toEqual([])
+  })
+
+  it('ajusta la cantidad al nuevo stock', () => {
+    const r = sincronizar(enCarrito, [{ ...enCarrito[0], stock: 4 }])
+    expect(r[0].cantidad).toBe(4)
+    expect(r[0].stock).toBe(4)
+  })
+
+  it('actualiza el precio con el del catálogo', () => {
+    const r = sincronizar(enCarrito, [{ ...enCarrito[0], precio: 120 }])
+    expect(r[0].precio).toBe(120)
+  })
+
+  it('descarta cantidades corruptas', () => {
+    const malos = [
+      { ...enCarrito[0], cantidad: -3 },
+      { ...enCarrito[0], id: 7, cantidad: 1.5 },
+      { ...enCarrito[0], id: 8, cantidad: 'abc' },
+    ]
+    const productos = [6, 7, 8].map((id) => ({ ...enCarrito[0], id }))
+    expect(sincronizar(malos, productos)).toEqual([])
+  })
+})

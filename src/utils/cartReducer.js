@@ -30,6 +30,22 @@ export function cartReducer(items, action) {
       return items.filter((i) => i.id !== action.id)
     case 'VACIAR':
       return []
+    case 'SINCRONIZAR':
+      return items.flatMap((i) => {
+        if (!Number.isInteger(i.cantidad) || i.cantidad < 1) return []
+        const actual = action.productos.find((p) => p.id === i.id)
+        if (!actual || actual.stock < 1) return []
+        return [
+          {
+            ...i,
+            nombre: actual.nombre,
+            precio: actual.precio,
+            stock: actual.stock,
+            imagen: actual.imagen,
+            cantidad: Math.min(i.cantidad, actual.stock),
+          },
+        ]
+      })
     default:
       return items
   }

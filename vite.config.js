@@ -8,5 +8,7 @@ export default defineConfig({
     pool: 'threads',
     maxWorkers: 1,
     isolate: false,
+    globals: true,
+    setupFiles: './src/setupTests.js',
   },
 })
