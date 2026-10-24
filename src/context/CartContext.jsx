@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from 'react'
 import { cartReducer } from '../utils/cartReducer'
+import { obtenerProductos } from '../services/productService'
 
 const CartContext = createContext(null)
 const CLAVE = 'tienda-carrito'
@@ -16,6 +17,10 @@ function cargarCarrito() {
 
 export function CartProvider({ children }) {
   const [items, dispatch] = useReducer(cartReducer, [], cargarCarrito)
+
+  useEffect(() => {
+    dispatch({ type: 'SINCRONIZAR', productos: obtenerProductos() })
+  }, [])
 
   useEffect(() => {
     try {

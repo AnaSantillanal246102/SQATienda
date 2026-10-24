@@ -87,3 +87,24 @@ input[aria-invalid="true"] { border-color: var(--danger); }
   .cart-item { grid-template-columns: 56px 1fr; }
   .cart-item__qty, .cart-item__total { grid-column: 2; text-align: left; }
 }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Resumen */
+.table-wrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; background: #fff; }
+.table th, .table td { padding: .6rem .75rem; border-bottom: 1px solid var(--border); text-align: left; }
+.table td:nth-child(n+2), .table th:nth-child(n+2) { text-align: right; }
+.delivery div { display: flex; gap: 1rem; padding: .3rem 0; border-bottom: 1px solid var(--border); }
+.delivery dt { width: 140px; font-weight: 600; margin: 0; }
+.delivery dd { margin: 0; }
+.actions__group { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+/* Pago */
+fieldset { border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: #fff; }
+legend { font-weight: 700; padding: 0 .4rem; }
+.row { display: flex; gap: 1rem; }
+.row .field { flex: 1; }
+.notice { background: #eff6ff; border-left: 4px solid var(--primary); padding: .6rem .8rem; margin: 0 0 .5rem; font-size: .9rem; }
+.alert { padding: .8rem 1rem; border-radius: var(--radius); margin-top: 1rem; }
+.alert--warning { background: #fef3c7; color: #78350f; border: 1px solid #f59e0b; }
