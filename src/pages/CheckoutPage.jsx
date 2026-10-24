@@ -54,6 +54,7 @@ export default function CheckoutPage() {
     <section>
       <StepIndicator actual={2} />
       <h1>Datos de entrega</h1>
+      <p className="muted">Todos los campos son obligatorios.</p>
       <form onSubmit={manejarEnvio} noValidate className="form">
         <FormField id="nombre" label="Nombre completo" autoComplete="name" value={datos.nombre} error={errores.nombre} {...comunes} />
         <FormField id="email" label="Correo electrónico" type="email" autoComplete="email" value={datos.email} error={errores.email} {...comunes} />

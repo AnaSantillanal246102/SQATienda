@@ -4,7 +4,7 @@ import { formatearMoneda } from '../utils/format'
 export default function ProductCard({ producto }) {
   const agotado = producto.stock === 0
   return (
-    <article className="card">
+    <article className={`card${agotado ? ' card--out' : ''}`}>
       <img src={producto.imagen} alt={producto.nombre} className="card__img" />
       <div className="card__body">
         <span className="card__cat">{producto.categoria}</span>

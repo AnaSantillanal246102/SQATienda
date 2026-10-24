@@ -11,7 +11,7 @@ export default function Navbar() {
           <NavLink to="/" end>Catálogo</NavLink>
           <NavLink to="/carrito" className="navbar__cart">
             Carrito
-            <span className="navbar__count" aria-label={`${cantidadTotal} artículos en el carrito`}>
+            <span className="navbar__count" aria-live="polite" aria-label={`${cantidadTotal} artículos en el carrito`}>
               {cantidadTotal}
             </span>
           </NavLink>

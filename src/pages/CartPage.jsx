@@ -1,12 +1,20 @@
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import CartItem from '../components/CartItem'
 import OrderTotals from '../components/OrderTotals'
 import StepIndicator from '../components/StepIndicator'
+import { render, screen, fireEvent, within } from '@testing-library/react'
 
 export default function CartPage() {
   const { items, cambiar, quitar, vaciar } = useCart()
   const navigate = useNavigate()
+  const [confirmando, setConfirmando] = useState(false)
+  const dialogo = screen.getByRole('dialog')
+
+  fireEvent.click(
+    within(dialogo).getByRole('button', { name: 'Sí, vaciar' })
+  )
 
   if (items.length === 0) {
     return (
@@ -28,8 +36,19 @@ export default function CartPage() {
         ))}
       </ul>
       <OrderTotals items={items} />
+
       <div className="actions">
-        <button className="btn btn--secondary" onClick={vaciar}>Vaciar carrito</button>
+        {confirmando ? (
+          <div className="actions__group" role="group" aria-label="Confirmar vaciado del carrito">
+            <span>¿Vaciar todo el carrito?</span>
+            <button className="btn btn--danger" onClick={vaciar}>Sí, vaciar</button>
+            <button className="btn btn--secondary" onClick={() => setConfirmando(false)}>Cancelar</button>
+          </div>
+        ) : (
+          <button className="btn btn--secondary" onClick={() => setConfirmando(true)}>
+            Vaciar carrito
+          </button>
+        )}
         <button className="btn" onClick={() => navigate('/datos')}>Continuar con mis datos</button>
       </div>
     </section>
