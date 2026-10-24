@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
+import ProductImage from './ProductImage'
 import { formatearMoneda } from '../utils/format'
 
 export default function ProductCard({ producto }) {
   const agotado = producto.stock === 0
   return (
     <article className={`card${agotado ? ' card--out' : ''}`}>
-      <img src={producto.imagen} alt={producto.nombre} className="card__img" />
+      <ProductImage id={producto.id} nombre={producto.nombre} imagen={producto.imagen} />
       <div className="card__body">
         <span className="card__cat">{producto.categoria}</span>
         <h3 className="card__title">{producto.nombre}</h3>
