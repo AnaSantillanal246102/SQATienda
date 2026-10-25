@@ -15,7 +15,7 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <EmptyState titulo="Tu carrito está vacío" as="h1">
-        <p>Agrega productos desde el catálogo para comenzar.</p>
+        <p>Agrega productos desde el catálogo para comenzar, busca un equipo que vaya contigo.</p>
         <Link to="/" className="btn">Ir al catálogo</Link>
       </EmptyState>
     )

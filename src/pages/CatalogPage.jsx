@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { ArrowRight, SlidersHorizontal } from 'lucide-react'
+import { ArrowRight, SlidersHorizontal, Eye, ListChecks, Sparkles } from 'lucide-react'
 import ProductCard from '../components/ProductCard'
 import EmptyState from '../components/EmptyState'
+import Hero from '../components/Hero'
 import {
   buscarProductos,
   obtenerCategorias,
@@ -30,26 +31,11 @@ export default function CatalogPage() {
 
   return (
     <div>
-      <h1 className="sr-only">Catálogo de productos</h1>
+      {hayFiltros && <h1 className="sr-only">Catálogo de productos</h1>}
 
       {!hayFiltros && (
         <>
-          <section className="hero">
-          <div className="hero__content">
-            <span className="hero__tag">Tecnología que te impulsa</span>
-            <p className="hero__title">Equipos y componentes de última generación</p>
-            <p className="hero__text">
-              Laptops, desktops, monitores y accesorios para trabajo, estudio y gaming.
-              Explora el catálogo y arma tu carrito en minutos.
-            </p>
-            <a href="#catalogo" className="btn btn--light">
-              Ver catálogo <ArrowRight size={18} aria-hidden="true" />
-            </a>
-          </div>
-          <div className="hero__art" aria-hidden="true">
-            <img src="/img/robot.png" alt="" className="hero__robot" width="235" height="300" />
-          </div>
-        </section>
+        <Hero />
 
           <section aria-labelledby="destacados">
             <h2 id="destacados">Destacados</h2>
@@ -106,6 +92,24 @@ export default function CatalogPage() {
             ))}
           </div>
         )}
+      </section>
+      <section className="benefits" aria-labelledby="beneficios">
+        <h2 id="beneficios" className="sr-only">¿Por qué comprar aquí?</h2>
+        <div>
+          <Sparkles size={26} aria-hidden="true" />
+          <h3>Simple por diseño</h3>
+          <p>Encuentra y compara equipos sin complicaciones.</p>
+        </div>
+        <div>
+          <Eye size={26} aria-hidden="true" />
+          <h3>Información clara</h3>
+          <p>Precios, IVA y existencias visibles durante tu compra.</p>
+        </div>
+        <div>
+          <ListChecks size={26} aria-hidden="true" />
+          <h3>Tú tienes el control</h3>
+          <p>Revisa tus datos y el resumen antes de llegar al pago de demostración.</p>
+        </div>
       </section>
     </div>
   )
