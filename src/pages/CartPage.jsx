@@ -5,6 +5,7 @@ import { useCart } from '../context/CartContext'
 import CartItem from '../components/CartItem'
 import OrderTotals from '../components/OrderTotals'
 import StepIndicator from '../components/StepIndicator'
+import EmptyState from '../components/EmptyState'
 
 export default function CartPage() {
   const { items, cambiar, quitar, vaciar } = useCart()
@@ -13,11 +14,10 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="empty">
-        <h1>Tu carrito está vacío</h1>
+      <EmptyState titulo="Tu carrito está vacío" as="h1">
         <p>Agrega productos desde el catálogo para comenzar.</p>
         <Link to="/" className="btn">Ir al catálogo</Link>
-      </div>
+      </EmptyState>
     )
   }
 

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
+import EmptyState from '../components/EmptyState'
 
 export default function NotFoundPage() {
   return (
-    <div className="empty">
-      <h1>Página no encontrada</h1>
+    <EmptyState titulo="Página no encontrada" as="h1">
+      <p>La dirección que buscas no existe.</p>
       <Link to="/" className="btn">Ir al catálogo</Link>
-    </div>
+    </EmptyState>
   )
 }

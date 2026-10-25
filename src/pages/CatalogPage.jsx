@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ArrowRight, SlidersHorizontal } from 'lucide-react'
 import ProductCard from '../components/ProductCard'
+import EmptyState from '../components/EmptyState'
 import {
   buscarProductos,
   obtenerCategorias,
@@ -34,6 +35,7 @@ export default function CatalogPage() {
       {!hayFiltros && (
         <>
           <section className="hero">
+          <div className="hero__content">
             <span className="hero__tag">Tecnología que te impulsa</span>
             <p className="hero__title">Equipos y componentes de última generación</p>
             <p className="hero__text">
@@ -43,7 +45,11 @@ export default function CatalogPage() {
             <a href="#catalogo" className="btn btn--light">
               Ver catálogo <ArrowRight size={18} aria-hidden="true" />
             </a>
-          </section>
+          </div>
+          <div className="hero__art" aria-hidden="true">
+            <img src="/img/robot.png" alt="" className="hero__robot" width="235" height="300" />
+          </div>
+        </section>
 
           <section aria-labelledby="destacados">
             <h2 id="destacados">Destacados</h2>
@@ -89,10 +95,10 @@ export default function CatalogPage() {
         </p>
 
         {productos.length === 0 ? (
-          <div className="empty">
+          <EmptyState titulo="Sin resultados">
             <p>No encontramos productos con esa búsqueda.</p>
             <button type="button" className="btn" onClick={limpiar}>Limpiar filtros</button>
-          </div>
+          </EmptyState>
         ) : (
           <div className="grid">
             {productos.map((p) => (
