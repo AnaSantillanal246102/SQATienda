@@ -1,13 +1,23 @@
+import { useState } from 'react'
 import { Package } from 'lucide-react'
 import { obtenerProductoPorId } from '../services/productService'
 import { CATEGORIAS, FONDO_DEFECTO } from '../utils/visuals'
 
 export default function ProductImage({ id, nombre, imagen, size = 'card', decorativo = false }) {
+  const [fallo, setFallo] = useState(false)
   const clase = `pimg pimg--${size}`
 
-  // Si el producto tiene una foto real, se usa
-  if (imagen && !imagen.includes('placeholder')) {
-    return <img src={imagen} alt={decorativo ? '' : nombre} className={clase} />
+  // Si el producto tiene una foto real y carga bien, se usa
+  if (imagen && !imagen.includes('placeholder') && !fallo) {
+    return (
+      <img
+        src={imagen}
+        alt={decorativo ? '' : nombre}
+        className={clase}
+        loading="lazy"
+        onError={() => setFallo(true)}
+      />
+    )
   }
 
   const categoria = CATEGORIAS[obtenerProductoPorId(id)?.categoria]

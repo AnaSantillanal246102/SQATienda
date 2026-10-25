@@ -17,8 +17,8 @@ export default function Navbar() {
     <header className="navbar">
       <div className="navbar__inner">
         <Link to="/" className="brand">
-          <span className="brand__logo" aria-hidden="true"><Cpu size={22} /></span>
-          ByteShop
+          <span className="brand__logo"><img src="/img/logo.jpeg" alt="SQAShop" /></span>
+          SQAShop
         </Link>
 
         <form className="searchbar" role="search" onSubmit={(e) => e.preventDefault()}>

@@ -13,20 +13,40 @@ describe('productService', () => {
     expect(obtenerProductos().length).toBeGreaterThanOrEqual(25)
   })
 
+  it('todos los productos tienen precio positivo y stock entero no negativo', () => {
+    for (const p of obtenerProductos()) {
+      expect(p.precio).toBeGreaterThan(0)
+      expect(Number.isInteger(p.stock) && p.stock >= 0).toBe(true)
+    }
+  })
+
+  it('no hay ids repetidos', () => {
+    const ids = obtenerProductos().map((p) => p.id)
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+
   it('devuelve null si el id no existe', () => {
     expect(obtenerProductoPorId(9999)).toBeNull()
   })
 
   it('encuentra un producto por id, incluso si llega como texto', () => {
-    expect(obtenerProductoPorId('1').nombre).toBe('Aero Book Air 13')
+    expect(obtenerProductoPorId('1').nombre).toBe('NovaBook Ultra 17')
   })
 
-  it('devuelve 8 categorías', () => {
-    expect(obtenerCategorias()).toHaveLength(8)
+  it('devuelve 6 categorías', () => {
+    expect(obtenerCategorias()).toHaveLength(6)
   })
 
-  it('busca sin importar mayúsculas', () => {
-    expect(buscarProductos({ texto: 'MONITOR' })).toHaveLength(4)
+  it('busca por categoría o descripción, no solo por nombre', () => {
+    expect(buscarProductos({ texto: 'laptop' })).toHaveLength(6)
+  })
+
+  it('ignora mayúsculas', () => {
+    expect(buscarProductos({ texto: 'MONITOR' })).toHaveLength(5)
+  })
+
+  it('ignora acentos', () => {
+    expect(buscarProductos({ texto: 'audifonos' })).toHaveLength(1)
   })
 
   it('combina búsqueda y categoría', () => {
