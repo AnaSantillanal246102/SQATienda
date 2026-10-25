@@ -6,12 +6,18 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="container navbar__inner">
-        <Link to="/" className="navbar__brand">Mi Tienda</Link>
+        <Link to="/" className="navbar__brand">
+          <span aria-hidden="true">🛍️</span> Mi Tienda
+        </Link>
         <nav aria-label="Principal">
           <NavLink to="/" end>Catálogo</NavLink>
-          <NavLink to="/carrito" className="navbar__cart">
-            Carrito
-            <span className="navbar__count" aria-label={`${cantidadTotal} artículos en el carrito`}>
+          <NavLink to="/carrito">
+            <span aria-hidden="true">🛒</span> Carrito
+            <span
+              className="navbar__count"
+              aria-live="polite"
+              aria-label={`${cantidadTotal} artículos en el carrito`}
+            >
               {cantidadTotal}
             </span>
           </NavLink>

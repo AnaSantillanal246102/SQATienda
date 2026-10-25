@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { redondear, validarCantidad } from '../utils/cart'
 import { formatearMoneda } from '../utils/format'
+import ProductImage from './ProductImage'
 
 export default function CartItem({ item, onCambiar, onQuitar }) {
   const [valor, setValor] = useState(String(item.cantidad))
@@ -39,7 +40,7 @@ useEffect(() => {
 
   return (
     <li className="cart-item">
-      <img src={item.imagen} alt="" className="cart-item__img" />
+      <ProductImage id={item.id} nombre={item.nombre} imagen={item.imagen} size="thumb" decorativo />
       <div className="cart-item__info">
         <Link to={`/producto/${item.id}`}>{item.nombre}</Link>
         <span className="muted">{formatearMoneda(item.precio)} c/u</span>

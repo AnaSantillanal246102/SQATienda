@@ -5,6 +5,7 @@ import { CartProvider } from './context/CartContext'
 import { CheckoutProvider } from './context/CheckoutContext'
 import App from './App'
 import './index.css'
+import '@fontsource-variable/inter'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
