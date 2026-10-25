@@ -170,10 +170,8 @@ legend { font-weight: 700; padding: 0 .4rem; }
 .secure { display: flex; justify-content: center; align-items: center; gap: .4rem; margin-top: 1rem; color: var(--muted); font-size: .9rem; }
 
 .footer { display: flex;
-  flex-direction: row;
-  gap: 10rem;
-  padding: 2rem 1rem;
-  align-items: center; height: 30px ; text-align: center; color: var(--muted); font-size: .9rem; padding: 1rem 1rem; background: var(--surface); border-top: 1px solid var(--border); }
+  flex-direction: row; margin-top: auto;
+  align-items: center; text-align: center; color: var(--muted); font-size: .9rem; padding: 1rem 1rem; background: var(--surface); border-top: 1px solid var(--border); }
 
 /* ===== Tablet y celular ===== */
 @media (max-width: 900px) {

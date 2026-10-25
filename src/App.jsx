@@ -32,8 +32,7 @@ export default function App() {
       <footer className="footer">
       <a class="brandj footer-brand" href="#inicio">
         mora<span class="brandj-dot">.</span>
-      </a><p>Una experiencia de compra de demostración. No se procesan pagos reales.</p>
-      <span>© 2026 Mora Store</span>
+      </a><span>© 2026 Mora Store</span>
       </footer>
     </>
   )
