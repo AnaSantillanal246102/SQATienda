@@ -1,5 +1,6 @@
+import { Package } from 'lucide-react'
 import { obtenerProductoPorId } from '../services/productService'
-import { CATEGORIAS, EMOJI_PRODUCTO, FONDO_DEFECTO } from '../utils/visuals'
+import { CATEGORIAS, FONDO_DEFECTO } from '../utils/visuals'
 
 export default function ProductImage({ id, nombre, imagen, size = 'card', decorativo = false }) {
   const clase = `pimg pimg--${size}`
@@ -9,15 +10,13 @@ export default function ProductImage({ id, nombre, imagen, size = 'card', decora
     return <img src={imagen} alt={decorativo ? '' : nombre} className={clase} />
   }
 
-  const producto = obtenerProductoPorId(id)
-  const fondo = CATEGORIAS[producto?.categoria]?.fondo ?? FONDO_DEFECTO
-  const accesibilidad = decorativo
-    ? { 'aria-hidden': true }
-    : { role: 'img', 'aria-label': nombre }
+  const categoria = CATEGORIAS[obtenerProductoPorId(id)?.categoria]
+  const Icono = categoria?.Icono ?? Package
+  const accesibilidad = decorativo ? { 'aria-hidden': true } : { role: 'img', 'aria-label': nombre }
 
   return (
-    <div className={clase} style={{ background: fondo }} {...accesibilidad}>
-      <span aria-hidden="true">{EMOJI_PRODUCTO[id] ?? '🛍️'}</span>
+    <div className={clase} style={{ background: categoria?.fondo ?? FONDO_DEFECTO }} {...accesibilidad}>
+      <Icono strokeWidth={1.25} aria-hidden="true" />
     </div>
   )
 }

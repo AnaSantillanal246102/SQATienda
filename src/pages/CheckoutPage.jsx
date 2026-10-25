@@ -5,8 +5,9 @@ import { useCheckout } from '../context/CheckoutContext'
 import { validarCampo, validarCliente } from '../utils/validators'
 import FormField from '../components/FormField'
 import StepIndicator from '../components/StepIndicator'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
-const VACIO = { nombre: '', email: '', telefono: '', direccion: '', ciudad: '', cp: '' }
+const VACIO = { nombre: '', email: '', telefono: '', direccion: '', ciudad: '', cp: '', estado: '' }
 
 export default function CheckoutPage() {
   const { items } = useCart()
@@ -44,27 +45,40 @@ export default function CheckoutPage() {
       email: datos.email.trim(),
       direccion: datos.direccion.trim(),
       ciudad: datos.ciudad.trim(),
+      estado: datos.estado.trim(),
     })
     navigate('/resumen')
   }
 
   const comunes = { onChange: manejarCambio, onBlur: manejarBlur }
 
-  return (
-    <section>
+    return (
+    <section className="narrow">
       <StepIndicator actual={2} />
       <h1>Datos de entrega</h1>
-      <p className="muted">Todos los campos son obligatorios.</p>
+      <p className="muted">
+        Completa tus datos para continuar con la compra. Todos los campos son obligatorios
+        y se conservan al navegar entre pasos.
+      </p>
       <form onSubmit={manejarEnvio} noValidate className="form">
         <FormField id="nombre" label="Nombre completo" autoComplete="name" value={datos.nombre} error={errores.nombre} {...comunes} />
-        <FormField id="email" label="Correo electrónico" type="email" autoComplete="email" value={datos.email} error={errores.email} {...comunes} />
-        <FormField id="telefono" label="Teléfono (10 dígitos)" type="tel" inputMode="numeric" autoComplete="tel" value={datos.telefono} error={errores.telefono} {...comunes} />
-        <FormField id="direccion" label="Calle y número" autoComplete="street-address" value={datos.direccion} error={errores.direccion} {...comunes} />
-        <FormField id="ciudad" label="Ciudad" autoComplete="address-level2" value={datos.ciudad} error={errores.ciudad} {...comunes} />
-        <FormField id="cp" label="Código postal" inputMode="numeric" maxLength={5} autoComplete="postal-code" value={datos.cp} error={errores.cp} {...comunes} />
+        <div className="form-row form-row--2">
+          <FormField id="email" label="Correo electrónico" type="email" autoComplete="email" value={datos.email} error={errores.email} {...comunes} />
+          <FormField id="telefono" label="Teléfono (10 dígitos)" type="tel" inputMode="numeric" autoComplete="tel" value={datos.telefono} error={errores.telefono} {...comunes} />
+        </div>
+        <FormField id="direccion" label="Dirección (calle y número)" autoComplete="street-address" value={datos.direccion} error={errores.direccion} {...comunes} />
+        <div className="form-row form-row--3">
+          <FormField id="ciudad" label="Ciudad" autoComplete="address-level2" value={datos.ciudad} error={errores.ciudad} {...comunes} />
+          <FormField id="estado" label="Estado" autoComplete="address-level1" value={datos.estado} error={errores.estado} {...comunes} />
+          <FormField id="cp" label="Código postal" inputMode="numeric" maxLength={5} autoComplete="postal-code" value={datos.cp} error={errores.cp} {...comunes} />
+        </div>
         <div className="actions">
-          <button type="button" className="btn btn--secondary" onClick={() => navigate('/carrito')}>Volver al carrito</button>
-          <button type="submit" className="btn">Revisar mi compra</button>
+          <button type="button" className="btn btn--secondary" onClick={() => navigate('/carrito')}>
+            <ArrowLeft size={18} aria-hidden="true" /> Volver al carrito
+          </button>
+          <button type="submit" className="btn">
+            Continuar a revisión <ArrowRight size={18} aria-hidden="true" />
+          </button>
         </div>
       </form>
     </section>

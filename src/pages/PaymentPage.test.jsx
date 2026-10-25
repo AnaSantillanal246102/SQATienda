@@ -6,7 +6,11 @@ import { CheckoutProvider } from '../context/CheckoutContext'
 import CheckoutGuard from '../components/CheckoutGuard'
 import PaymentPage from './PaymentPage'
 
-const ITEM = { id: 6, nombre: 'Cable HDMI 2 metros', precio: 99.99, stock: 40, imagen: '', cantidad: 2 }
+import { obtenerProductoPorId } from '../services/productService'
+
+const P = obtenerProductoPorId(1)
+const ITEM = { id: P.id, nombre: P.nombre, precio: P.precio, stock: P.stock, imagen: P.imagen, cantidad: 2 }
+
 const CLIENTE = {
   nombre: 'Ana López',
   email: 'ana@correo.com',
@@ -14,6 +18,7 @@ const CLIENTE = {
   direccion: 'Av. Juárez 123',
   ciudad: 'Ciudad Juárez',
   cp: '32000',
+  estado: 'Chihuahua',
 }
 
 function renderizar() {
