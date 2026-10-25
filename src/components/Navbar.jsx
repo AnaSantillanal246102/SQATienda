@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom'
-import { Cpu, Search, ShoppingCart } from 'lucide-react'
+import { Search, ShoppingCart } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 
 export default function Navbar() {
@@ -17,8 +17,8 @@ export default function Navbar() {
     <header className="navbar">
       <div className="navbar__inner">
         <Link to="/" className="brand">
-          <span className="brand__logo" aria-hidden="true"><Cpu size={22} /></span>
-          ByteShop
+        <img src="/img/robot-head.png" alt="" className="brand__logo" width="44" height="44" />
+        SQAShop
         </Link>
 
         <form className="searchbar" role="search" onSubmit={(e) => e.preventDefault()}>

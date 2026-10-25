@@ -1,41 +1,231 @@
 [
-  { "id": 1, "nombre": "Aero Book Air 13", "categoria": "Laptops", "precio": 18999.00, "stock": 12, "destacado": true, "descripcion": "Laptop ultraligera de 13.3 pulgadas, Intel Core i5, 16 GB RAM, SSD de 512 GB.", "imagen": "/img/placeholder.svg" },
-  { "id": 2, "nombre": "Aero Book Go 14", "categoria": "Laptops", "precio": 12499.00, "stock": 20, "descripcion": "Laptop de 14 pulgadas para el día a día, Intel Core i3, 8 GB RAM, SSD de 256 GB.", "imagen": "/img/placeholder.svg" },
-  { "id": 3, "nombre": "Aero Book Pro 16", "categoria": "Laptops", "precio": 32499.00, "stock": 7, "destacado": true, "descripcion": "Laptop de 16 pulgadas para creadores, AMD Ryzen 7, 32 GB RAM, SSD de 1 TB, GPU dedicada.", "imagen": "/img/placeholder.svg" },
-  { "id": 4, "nombre": "Strike Gamer 15", "categoria": "Laptops", "precio": 27999.00, "stock": 3, "descripcion": "Laptop gamer de 15.6 pulgadas a 144 Hz, Intel Core i7, 16 GB RAM, RTX 4060.", "imagen": "/img/placeholder.svg" },
-
-  { "id": 5, "nombre": "Todo en Uno 27", "categoria": "Desktops", "precio": 25999.00, "stock": 4, "destacado": true, "descripcion": "Equipo todo en uno de 27 pulgadas, Intel Core i7, 16 GB RAM, SSD de 512 GB y periféricos inalámbricos.", "imagen": "/img/placeholder.svg" },
-  { "id": 6, "nombre": "Mini PC Cubo", "categoria": "Desktops", "precio": 9499.00, "stock": 15, "descripcion": "Mini PC compacta, AMD Ryzen 5, 16 GB RAM, SSD de 512 GB y WiFi 6.", "imagen": "/img/placeholder.svg" },
-  { "id": 7, "nombre": "Torre Gamer Titan", "categoria": "Desktops", "precio": 38999.00, "stock": 0, "descripcion": "Torre gamer con AMD Ryzen 7, 32 GB RAM, SSD de 1 TB y RTX 4070.", "imagen": "/img/placeholder.svg" },
-  { "id": 8, "nombre": "PC de Oficina Base", "categoria": "Desktops", "precio": 8999.99, "stock": 18, "descripcion": "Intel Core i5, 8 GB RAM, SSD de 256 GB, teclado y mouse incluidos.", "imagen": "/img/placeholder.svg" },
-
-  { "id": 9, "nombre": "Monitor 24 pulgadas Full HD", "categoria": "Monitores", "precio": 2799.00, "stock": 25, "descripcion": "Panel IPS Full HD a 75 Hz con entradas HDMI y VGA.", "imagen": "/img/placeholder.svg" },
-  { "id": 10, "nombre": "Monitor 27 pulgadas QHD", "categoria": "Monitores", "precio": 5499.00, "stock": 10, "destacado": true, "descripcion": "Resolución 2560 x 1440, panel IPS a 100 Hz y conexión USB-C.", "imagen": "/img/placeholder.svg" },
-  { "id": 11, "nombre": "Monitor Curvo 32 pulgadas 165 Hz", "categoria": "Monitores", "precio": 7999.00, "stock": 6, "descripcion": "Panel VA curvo, 165 Hz, respuesta de 1 ms y FreeSync.", "imagen": "/img/placeholder.svg" },
-  { "id": 12, "nombre": "Monitor Portátil 15.6 pulgadas", "categoria": "Monitores", "precio": 3299.50, "stock": 9, "descripcion": "Full HD con conexión USB-C, delgado y ligero para llevar a todos lados.", "imagen": "/img/placeholder.svg" },
-
-  { "id": 13, "nombre": "Audífonos Inalámbricos ANC", "categoria": "Audio", "precio": 2499.00, "stock": 14, "descripcion": "Cancelación activa de ruido y hasta 30 horas de batería.", "imagen": "/img/placeholder.svg" },
-  { "id": 14, "nombre": "Audífonos Gamer 7.1", "categoria": "Audio", "precio": 1299.00, "stock": 22, "descripcion": "Sonido envolvente 7.1 con micrófono desmontable.", "imagen": "/img/placeholder.svg" },
-  { "id": 15, "nombre": "Bocina Bluetooth Mini", "categoria": "Audio", "precio": 899.00, "stock": 30, "descripcion": "Bocina portátil resistente al agua con 12 horas de batería.", "imagen": "/img/placeholder.svg" },
-  { "id": 16, "nombre": "Barra de Sonido 2.1", "categoria": "Audio", "precio": 1899.00, "stock": 2, "descripcion": "Barra con subwoofer inalámbrico, Bluetooth y entrada HDMI ARC.", "imagen": "/img/placeholder.svg" },
-
-  { "id": 17, "nombre": "Teclado Mecánico 75%", "categoria": "Teclados", "precio": 1599.00, "stock": 16, "descripcion": "Switches intercambiables, conexión Bluetooth y cable USB-C.", "imagen": "/img/placeholder.svg" },
-  { "id": 18, "nombre": "Teclado Inalámbrico Slim", "categoria": "Teclados", "precio": 799.00, "stock": 28, "descripcion": "Perfil bajo, teclas silenciosas y hasta 6 meses de batería.", "imagen": "/img/placeholder.svg" },
-  { "id": 19, "nombre": "Teclado Gamer RGB", "categoria": "Teclados", "precio": 1299.90, "stock": 0, "descripcion": "Formato completo con iluminación RGB y descansa muñecas.", "imagen": "/img/placeholder.svg" },
-  { "id": 20, "nombre": "Combo Teclado y Mouse", "categoria": "Teclados", "precio": 549.00, "stock": 40, "descripcion": "Combo inalámbrico con un solo receptor USB.", "imagen": "/img/placeholder.svg" },
-
-  { "id": 21, "nombre": "Mouse Ergonómico Inalámbrico", "categoria": "Mouse", "precio": 649.00, "stock": 24, "descripcion": "Diseño vertical para reducir la fatiga de la muñeca.", "imagen": "/img/placeholder.svg" },
-  { "id": 22, "nombre": "Mouse Gamer 16000 DPI", "categoria": "Mouse", "precio": 799.00, "stock": 19, "descripcion": "Sensor óptico de alta precisión y 7 botones programables.", "imagen": "/img/placeholder.svg" },
-  { "id": 23, "nombre": "Mouse Compacto Bluetooth", "categoria": "Mouse", "precio": 399.50, "stock": 35, "descripcion": "Ligero y silencioso, ideal para viajar.", "imagen": "/img/placeholder.svg" },
-  { "id": 24, "nombre": "Mousepad XL", "categoria": "Mouse", "precio": 299.00, "stock": 50, "descripcion": "Superficie de tela de 90 x 40 cm con base antiderrapante.", "imagen": "/img/placeholder.svg" },
-
-  { "id": 25, "nombre": "SSD NVMe 1 TB", "categoria": "Componentes", "precio": 1799.00, "stock": 17, "descripcion": "Unidad M.2 con lecturas de hasta 3,500 MB/s.", "imagen": "/img/placeholder.svg" },
-  { "id": 26, "nombre": "Memoria RAM DDR4 16 GB", "categoria": "Componentes", "precio": 999.00, "stock": 26, "descripcion": "Módulo de 3200 MHz compatible con equipos de escritorio.", "imagen": "/img/placeholder.svg" },
-  { "id": 27, "nombre": "Tarjeta de Video RTX 4060", "categoria": "Componentes", "precio": 8999.00, "stock": 4, "descripcion": "8 GB GDDR6, ideal para juegos en 1080p y 1440p.", "imagen": "/img/placeholder.svg" },
-  { "id": 28, "nombre": "Fuente de Poder 650 W", "categoria": "Componentes", "precio": 1399.00, "stock": 1, "descripcion": "Certificación 80 Plus Bronze y cableado modular.", "imagen": "/img/placeholder.svg" },
-
-  { "id": 29, "nombre": "Tablet Lite 10 pulgadas", "categoria": "Tablets", "precio": 3999.00, "stock": 18, "descripcion": "64 GB de almacenamiento, WiFi y batería para todo el día.", "imagen": "/img/placeholder.svg" },
-  { "id": 30, "nombre": "Tablet Pro 11 pulgadas", "categoria": "Tablets", "precio": 9999.00, "stock": 8, "descripcion": "128 GB, pantalla a 120 Hz y soporte para lápiz digital.", "imagen": "/img/placeholder.svg" },
-  { "id": 31, "nombre": "Tablet Kids 8 pulgadas", "categoria": "Tablets", "precio": 2199.00, "stock": 12, "descripcion": "Con funda protectora y control parental.", "imagen": "/img/placeholder.svg" },
-  { "id": 32, "nombre": "Lápiz Digital", "categoria": "Tablets", "precio": 899.00, "stock": 21, "descripcion": "Lápiz con detección de presión compatible con las tablets Pro.", "imagen": "/img/placeholder.svg" }
+  {
+    "id": 1,
+    "nombre": "NovaBook Ultra 17",
+    "categoria": "Laptops",
+    "precio": 38999,
+    "stock": 5,
+    "descripcion": "Laptop de 17 pulgadas que reemplaza a una de escritorio, Ryzen 9, 32 GB RAM, SSD de 1 TB.",
+    "imagen": "/img/productos/1.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "NovaBook Lite 11",
+    "categoria": "Laptops",
+    "precio": 6499,
+    "stock": 0,
+    "descripcion": "Laptop compacta de 11.6 pulgadas para estudiantes, 4 GB RAM, 64 GB eMMC.",
+    "imagen": "/img/productos/2.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "NovaBook Studio 15",
+    "categoria": "Laptops",
+    "precio": 47999,
+    "stock": 3,
+    "descripcion": "Estación de trabajo de 15.6 pulgadas, Intel Core i7, 64 GB RAM, SSD de 2 TB, GPU RTX.",
+    "imagen": "/img/productos/3.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "NovaBook Go 14",
+    "categoria": "Laptops",
+    "precio": 12499,
+    "stock": 20,
+    "destacado": true,
+    "descripcion": "Laptop de 14 pulgadas para el día a día, Intel Core i3, 8 GB RAM, SSD de 256 GB.",
+    "imagen": "/img/productos/4.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "NovaBook Pro 16",
+    "categoria": "Laptops",
+    "precio": 32499,
+    "stock": 7,
+    "destacado": true,
+    "descripcion": "Laptop de 16 pulgadas para creadores, AMD Ryzen 7, 32 GB RAM, SSD de 1 TB, GPU dedicada.",
+    "imagen": "/img/productos/5.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "NovaBook Air 13",
+    "categoria": "Laptops",
+    "precio": 18999,
+    "stock": 12,
+    "destacado": true,
+    "descripcion": "Laptop ultraligera de 13.3 pulgadas, Intel Core i5, 16 GB RAM, SSD de 512 GB. Ideal para profesionales en movimiento.",
+    "imagen": "/img/productos/6.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "NovaTower Mini",
+    "categoria": "Desktops",
+    "precio": 8499,
+    "stock": 15,
+    "descripcion": "Mini PC compacta, Intel N100, 8 GB RAM, SSD de 256 GB y funcionamiento silencioso.",
+    "imagen": "/img/productos/7.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "NovaTower Workstation",
+    "categoria": "Desktops",
+    "precio": 89999,
+    "stock": 2,
+    "descripcion": "Estación de trabajo profesional, Threadripper, 128 GB RAM, NVMe de 2 TB, GPU Quadro.",
+    "imagen": "/img/productos/8.jpg"
+  },
+  {
+    "id": 9,
+    "nombre": "NovaAllInOne 27",
+    "categoria": "Desktops",
+    "precio": 27999,
+    "stock": 4,
+    "destacado": true,
+    "descripcion": "Equipo todo en uno de 27 pulgadas, Intel Core i7, 16 GB RAM, SSD de 512 GB y periféricos inalámbricos.",
+    "imagen": "/img/productos/9.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "NovaTower Gamer X",
+    "categoria": "Desktops",
+    "precio": 34999,
+    "stock": 6,
+    "descripcion": "PC gamer con Ryzen 5, RTX 4060, 16 GB RAM, NVMe de 1 TB y ventiladores RGB.",
+    "imagen": "/img/productos/10.jpg"
+  },
+  {
+    "id": 11,
+    "nombre": "NovaTower Home",
+    "categoria": "Desktops",
+    "precio": 15999,
+    "stock": 9,
+    "descripcion": "Torre familiar con Intel Core i5, 16 GB RAM, disco duro de 1 TB y SSD de 256 GB.",
+    "imagen": "/img/productos/11.jpg"
+  },
+  {
+    "id": 12,
+    "nombre": "NovaView 22 Basic",
+    "categoria": "Monitores",
+    "precio": 2199,
+    "stock": 0,
+    "descripcion": "Monitor Full HD de 21.5 pulgadas, 60 Hz, VGA y HDMI, económico.",
+    "imagen": "/img/productos/12.jpg"
+  },
+  {
+    "id": 13,
+    "nombre": "NovaView 32 Pro",
+    "categoria": "Monitores",
+    "precio": 18999,
+    "stock": 3,
+    "descripcion": "Monitor 4K de 31.5 pulgadas para creadores, 99% AdobeRGB y calibración por hardware.",
+    "imagen": "/img/productos/13.jpg"
+  },
+  {
+    "id": 14,
+    "nombre": "NovaView 34 Ultrawide",
+    "categoria": "Monitores",
+    "precio": 12999,
+    "stock": 6,
+    "descripcion": "Monitor curvo ultrapanorámico de 34 pulgadas, 1440p, 144 Hz, 1 ms y HDR400.",
+    "imagen": "/img/productos/14.jpg"
+  },
+  {
+    "id": 15,
+    "nombre": "NovaView 27 4K",
+    "categoria": "Monitores",
+    "precio": 8999,
+    "stock": 10,
+    "descripcion": "Monitor 4K UHD de 27 pulgadas, 60 Hz, 99% sRGB y carga USB-C de 65 W.",
+    "imagen": "/img/productos/15.jpg"
+  },
+  {
+    "id": 16,
+    "nombre": "NovaView 24 FHD",
+    "categoria": "Monitores",
+    "precio": 3499,
+    "stock": 25,
+    "descripcion": "Monitor IPS Full HD de 23.8 pulgadas, 75 Hz, bordes delgados, HDMI y VGA.",
+    "imagen": "/img/productos/16.jpg"
+  },
+  {
+    "id": 17,
+    "nombre": "NovaType Slim Membrane",
+    "categoria": "Teclados",
+    "precio": 449,
+    "stock": 40,
+    "descripcion": "Teclado de membrana delgado, teclas silenciosas, USB-C y resistente a derrames.",
+    "imagen": "/img/productos/17.jpg"
+  },
+  {
+    "id": 18,
+    "nombre": "NovaType Wireless 75",
+    "categoria": "Teclados",
+    "precio": 2299,
+    "stock": 12,
+    "descripcion": "Teclado mecánico inalámbrico 75%, hot-swap y batería de 4000 mAh.",
+    "imagen": "/img/productos/18.jpg"
+  },
+  {
+    "id": 19,
+    "nombre": "NovaType RGB Full",
+    "categoria": "Teclados",
+    "precio": 1899,
+    "stock": 18,
+    "descripcion": "Teclado mecánico RGB de tamaño completo, switches azules y descansa muñecas.",
+    "imagen": "/img/productos/19.jpg"
+  },
+  {
+    "id": 20,
+    "nombre": "NovaType Mechanical 87",
+    "categoria": "Teclados",
+    "precio": 1499,
+    "stock": 30,
+    "descripcion": "Teclado mecánico TKL con switches intercambiables e iluminación RGB.",
+    "imagen": "/img/productos/20.jpg"
+  },
+  {
+    "id": 21,
+    "nombre": "NovaClick Mini Travel",
+    "categoria": "Mouse",
+    "precio": 349,
+    "stock": 8,
+    "descripcion": "Mouse compacto de viaje, Bluetooth 5.2 y 6 meses de batería.",
+    "imagen": "/img/productos/21.jpg"
+  },
+  {
+    "id": 22,
+    "nombre": "NovaClick Office",
+    "categoria": "Mouse",
+    "precio": 399,
+    "stock": 50,
+    "descripcion": "Mouse inalámbrico ambidiestro, clics silenciosos y 12 meses de batería.",
+    "imagen": "/img/productos/22.jpg"
+  },
+  {
+    "id": 23,
+    "nombre": "NovaClick Gamer 8K",
+    "categoria": "Mouse",
+    "precio": 1599,
+    "stock": 14,
+    "descripcion": "Mouse gamer con cable, sondeo de 8K, 30K DPI y solo 58 g.",
+    "imagen": "/img/productos/23.jpg"
+  },
+  {
+    "id": 24,
+    "nombre": "NovaClick Pro Wireless",
+    "categoria": "Mouse",
+    "precio": 1299,
+    "stock": 22,
+    "descripcion": "Mouse inalámbrico ergonómico, sensor de 26K DPI, 70 h de batería y USB-C.",
+    "imagen": "/img/productos/24.jpg"
+  },
+  {
+    "id": 25,
+    "nombre": "NovaSound Buds Pro",
+    "categoria": "Audio",
+    "precio": 1599,
+    "stock": 0,
+    "descripcion": "Audífonos inalámbricos con cancelación de ruido, carga inalámbrica e IPX5.",
+    "imagen": "/img/productos/25.jpg"
+  }
 ]

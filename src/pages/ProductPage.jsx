@@ -4,6 +4,7 @@ import { obtenerProductoPorId } from '../services/productService'
 import { useCart } from '../context/CartContext'
 import { validarCantidad } from '../utils/cart'
 import { formatearMoneda } from '../utils/format'
+import EmptyState from '../components/EmptyState'
 
 export default function ProductPage() {
   const { id } = useParams()
@@ -15,11 +16,10 @@ export default function ProductPage() {
 
   if (!producto) {
     return (
-      <div className="empty">
-        <h1>Producto no encontrado</h1>
+      <EmptyState titulo="Producto no encontrado" as="h1">
         <p>Es posible que el enlace sea incorrecto.</p>
         <Link to="/" className="btn">Volver al catálogo</Link>
-      </div>
+      </EmptyState>
     )
   }
 

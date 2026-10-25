@@ -11,3 +11,6 @@ npm test
 
 ## Docker
 Pendiente (Dockerfile aún no probado).
+
+## Imagenes
+Las imagenes usadas en el proyecto provienen de pexels y son de libre uso.

@@ -12,12 +12,16 @@ export function obtenerCategorias() {
   return [...new Set(productos.map((p) => p.categoria))]
 }
 
+function normalizar(texto) {
+  return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+}
+
 export function buscarProductos({ texto = '', categoria = '' } = {}) {
-  const t = texto.trim().toLowerCase()
+  const t = normalizar(texto.trim())
   return productos.filter(
     (p) =>
       (!categoria || p.categoria === categoria) &&
-      (!t || p.nombre.toLowerCase().includes(t))
+      (!t || normalizar(`${p.nombre} ${p.categoria} ${p.descripcion}`).includes(t))
   )
 }
 

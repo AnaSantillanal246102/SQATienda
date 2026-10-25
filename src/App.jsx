@@ -28,7 +28,7 @@ export default function App() {
         </Routes>
       </main>
       <footer className="footer">
-        ByteShop — Tienda de demostración. El servicio de pago no está disponible. No se realizan cobros
+        SQAShop — Tienda de demostración. El servicio de pago no está disponible. No se realizan cobros
       </footer>
     </>
   )
