@@ -4,6 +4,8 @@ import {
   obtenerProductoPorId,
   obtenerCategorias,
   buscarProductos,
+  obtenerDestacados,
+  ordenarProductos,
 } from './productService'
 
 describe('productService', () => {
@@ -16,18 +18,36 @@ describe('productService', () => {
   })
 
   it('encuentra un producto por id, incluso si llega como texto', () => {
-    expect(obtenerProductoPorId('1').nombre).toContain('Audífonos')
+    expect(obtenerProductoPorId('1').nombre).toBe('Aero Book Air 13')
   })
 
-  it('devuelve 5 categorías', () => {
-    expect(obtenerCategorias()).toHaveLength(5)
+  it('devuelve 8 categorías', () => {
+    expect(obtenerCategorias()).toHaveLength(8)
   })
 
   it('busca sin importar mayúsculas', () => {
-    expect(buscarProductos({ texto: 'CABLE' })).toHaveLength(1)
+    expect(buscarProductos({ texto: 'MONITOR' })).toHaveLength(4)
   })
 
   it('combina búsqueda y categoría', () => {
-    expect(buscarProductos({ texto: 'cable', categoria: 'Hogar' })).toHaveLength(0)
+    expect(buscarProductos({ texto: 'monitor', categoria: 'Audio' })).toHaveLength(0)
+  })
+
+  it('hay exactamente 4 destacados', () => {
+    expect(obtenerDestacados()).toHaveLength(4)
+  })
+
+  it('ordena por precio ascendente y descendente', () => {
+    const asc = ordenarProductos(obtenerProductos(), 'precio-asc')
+    const desc = ordenarProductos(obtenerProductos(), 'precio-desc')
+    expect(asc.every((p, i) => i === 0 || asc[i - 1].precio <= p.precio)).toBe(true)
+    expect(desc.every((p, i) => i === 0 || desc[i - 1].precio >= p.precio)).toBe(true)
+  })
+
+  it('no modifica la lista original al ordenar', () => {
+    const original = obtenerProductos()
+    const primero = original[0]
+    ordenarProductos(original, 'precio-desc')
+    expect(original[0]).toBe(primero)
   })
 })

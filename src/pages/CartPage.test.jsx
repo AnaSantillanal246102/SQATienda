@@ -4,7 +4,10 @@ import { MemoryRouter } from 'react-router-dom'
 import { CartProvider } from '../context/CartContext'
 import CartPage from './CartPage'
 
-const ITEM = { id: 6, nombre: 'Cable HDMI 2 metros', precio: 99.99, stock: 40, imagen: '', cantidad: 2 }
+import { obtenerProductoPorId } from '../services/productService'
+
+const P = obtenerProductoPorId(1)
+const ITEM = { id: P.id, nombre: P.nombre, precio: P.precio, stock: P.stock, imagen: P.imagen, cantidad: 2 }
 
 function renderizar() {
   localStorage.setItem('tienda-carrito', JSON.stringify([ITEM]))
@@ -24,14 +27,14 @@ describe('Carrito · vaciar con confirmación', () => {
     renderizar()
     fireEvent.click(screen.getByRole('button', { name: 'Vaciar carrito' }))
     expect(screen.getByText('¿Vaciar todo el carrito?')).toBeInTheDocument()
-    expect(screen.getByText('Cable HDMI 2 metros')).toBeInTheDocument()
+    expect(screen.getByText(P.nombre)).toBeInTheDocument()
   })
 
   it('cancelar conserva los productos', () => {
     renderizar()
     fireEvent.click(screen.getByRole('button', { name: 'Vaciar carrito' }))
     fireEvent.click(screen.getByRole('button', { name: 'Cancelar' }))
-    expect(screen.getByText('Cable HDMI 2 metros')).toBeInTheDocument()
+    expect(screen.getByText(P.nombre)).toBeInTheDocument()
   })
 
   it('confirmar vacía el carrito y muestra el estado vacío', () => {

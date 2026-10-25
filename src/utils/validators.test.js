@@ -5,6 +5,7 @@ import {
   validarTelefono,
   validarCP,
   validarCliente,
+  validarEstado,
 } from './validators'
 
 describe('validarNombre', () => {
@@ -69,6 +70,7 @@ describe('validarCliente', () => {
     direccion: 'Av. Juárez 123',
     ciudad: 'Ciudad Juárez',
     cp: '32000',
+    estado: 'Chihuahua',
   }
 
   it('no devuelve errores con datos correctos', () => {
@@ -77,10 +79,22 @@ describe('validarCliente', () => {
 
   it('devuelve un error por cada campo vacío', () => {
     const errores = validarCliente({})
-    expect(Object.keys(errores)).toHaveLength(6)
+    expect(Object.keys(errores)).toHaveLength(7)
   })
 
   it('solo marca el campo incorrecto', () => {
     expect(Object.keys(validarCliente({ ...valido, cp: '12' }))).toEqual(['cp'])
+  })
+})
+
+describe('validarEstado', () => {
+  it.each([
+    ['', false],
+    ['Sol', false],
+    ['Sonora', true],
+    ['Chihuahua', true],
+    ['Sonora1', false],
+  ])('"%s" → válido: %s', (valor, valido) => {
+    expect(validarEstado(valor) === null).toBe(valido)
   })
 })

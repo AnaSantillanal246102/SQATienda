@@ -1,7 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { ArrowLeft, ArrowRight, BadgeCheck } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 import { useCheckout } from '../context/CheckoutContext'
 import OrderTotals from '../components/OrderTotals'
+import ProductImage from '../components/ProductImage'
 import StepIndicator from '../components/StepIndicator'
 import { redondear } from '../utils/cart'
 import { formatearMoneda } from '../utils/format'
@@ -16,58 +18,56 @@ export default function SummaryPage() {
     ['Correo', cliente.email],
     ['Teléfono', cliente.telefono],
     ['Dirección', cliente.direccion],
-    ['Ciudad', cliente.ciudad],
-    ['Código postal', cliente.cp],
+    ['Ubicación', `${cliente.ciudad}, ${cliente.estado}, ${cliente.cp}`],
   ]
 
   return (
     <section>
       <StepIndicator actual={3} />
-      <h1>Resumen de tu compra</h1>
+      <h1>Revisión de compra</h1>
+      <div className="layout">
+        <div className="stack">
+          <section className="panel" aria-labelledby="productos-h">
+            <h2 id="productos-h">Productos</h2>
+            <ul className="review-list">
+              {items.map((i) => (
+                <li key={i.id}>
+                  <ProductImage id={i.id} nombre={i.nombre} imagen={i.imagen} size="thumb" decorativo />
+                  <div>
+                    <p className="review__name">{i.nombre}</p>
+                    <p className="muted">{i.cantidad} × {formatearMoneda(i.precio)}</p>
+                  </div>
+                  <strong>{formatearMoneda(redondear(i.precio * i.cantidad))}</strong>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-      <h2>Productos</h2>
-      <div className="table-wrap">
-        <table className="table">
-          <caption className="sr-only">Productos seleccionados</caption>
-          <thead>
-            <tr>
-              <th scope="col">Producto</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Importe</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((i) => (
-              <tr key={i.id}>
-                <td>{i.nombre}</td>
-                <td>{i.cantidad}</td>
-                <td>{formatearMoneda(i.precio)}</td>
-                <td>{formatearMoneda(redondear(i.precio * i.cantidad))}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <OrderTotals items={items} />
-
-      <h2>Datos de entrega</h2>
-      <dl className="delivery">
-        {entrega.map(([etiqueta, valor]) => (
-          <div key={etiqueta}>
-            <dt>{etiqueta}</dt>
-            <dd>{valor}</dd>
-          </div>
-        ))}
-      </dl>
-
-      <div className="actions">
-        <div className="actions__group">
-          <button className="btn btn--secondary" onClick={() => navigate('/carrito')}>Editar carrito</button>
-          <button className="btn btn--secondary" onClick={() => navigate('/datos')}>Editar mis datos</button>
+          <section className="panel" aria-labelledby="entrega-h">
+            <h2 id="entrega-h">Datos de entrega</h2>
+            <dl className="delivery">
+              {entrega.map(([etiqueta, valor]) => (
+                <div key={etiqueta}>
+                  <dt>{etiqueta}</dt>
+                  <dd>{valor}</dd>
+                </div>
+              ))}
+            </dl>
+            <Link to="/datos" className="link">Editar datos de entrega</Link>
+          </section>
         </div>
-        <button className="btn" onClick={() => navigate('/pago')}>Continuar al pago</button>
+
+        <aside className="summary-card" aria-label="Totales del pedido">
+          <p className="verified"><BadgeCheck size={20} aria-hidden="true" /> Datos de la compra validados</p>
+          <h2>Totales</h2>
+          <OrderTotals items={items} />
+          <button className="btn btn--block" onClick={() => navigate('/pago')}>
+            Ir al pago <ArrowRight size={18} aria-hidden="true" />
+          </button>
+          <button className="btn btn--secondary btn--block" onClick={() => navigate('/carrito')}>
+            <ArrowLeft size={18} aria-hidden="true" /> Modificar carrito
+          </button>
+        </aside>
       </div>
     </section>
   )

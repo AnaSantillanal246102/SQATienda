@@ -53,6 +53,7 @@ const REGLAS = {
   direccion: validarDireccion,
   ciudad: validarCiudad,
   cp: validarCP,
+  estado: validarEstado,
 }
 
 export function validarCampo(campo, valor) {
@@ -67,4 +68,12 @@ export function validarCliente(datos) {
     if (error) errores[campo] = error
   }
   return errores
+}
+
+export function validarEstado(valor = '') {
+  const v = valor.trim()
+  if (!v) return 'El estado es obligatorio.'
+  if (v.length < 4) return 'Escribe el nombre del estado.'
+  if (!SOLO_LETRAS.test(v)) return 'El estado solo puede contener letras.'
+  return null
 }

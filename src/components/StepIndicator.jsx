@@ -1,17 +1,23 @@
-const PASOS = ['Carrito', 'Datos', 'Resumen', 'Pago']
+import { Check } from 'lucide-react'
+
+const PASOS = ['Carrito', 'Datos', 'Revisión', 'Pago']
 
 export default function StepIndicator({ actual }) {
   return (
-    <ol className="steps" aria-label="Progreso de la compra">
-      {PASOS.map((nombre, i) => (
-        <li
-          key={nombre}
-          className={i + 1 === actual ? 'steps__item steps__item--active' : i + 1 < actual ? 'steps__item steps__item--done' : 'steps__item'}
-          aria-current={i + 1 === actual ? 'step' : undefined}
-        >
-          <span className="steps__num">{i + 1}</span> {nombre}
-        </li>
-      ))}
+    <ol className="stepper-nav" aria-label="Progreso de la compra">
+      {PASOS.map((nombre, i) => {
+        const n = i + 1
+        const estado = n < actual ? 'done' : n === actual ? 'active' : 'todo'
+        return (
+          <li key={nombre} className={`sn sn--${estado}`} aria-current={n === actual ? 'step' : undefined}>
+            <span className="sn__circle">
+              {estado === 'done' ? <Check size={16} aria-hidden="true" /> : n}
+            </span>
+            <span className="sn__label">{nombre}</span>
+            {estado === 'done' && <span className="sr-only">(completado)</span>}
+          </li>
+        )
+      })}
     </ol>
   )
 }

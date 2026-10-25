@@ -17,13 +17,14 @@ export default function RouteEffects() {
     const titulo =
       TITULOS[pathname] ??
       (pathname.startsWith('/producto/') ? 'Detalle de producto' : 'Página no encontrada')
-    document.title = `${titulo} · Mi Tienda`
+    document.title = `${titulo} · ByteShop`
 
     // En la carga inicial no movemos el foco
     if (primera.current) {
       primera.current = false
       return
     }
+    if (document.activeElement?.closest?.('[role="search"]')) return
     window.scrollTo(0, 0)
     document.getElementById('contenido')?.focus()
   }, [pathname])

@@ -1,23 +1,56 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Check, Plus } from 'lucide-react'
 import ProductImage from './ProductImage'
-import { formatearMoneda } from '../utils/format'
+import { useCart } from '../context/CartContext'
+import { estadoStock, formatearMoneda } from '../utils/format'
 
 export default function ProductCard({ producto }) {
-  const agotado = producto.stock === 0
+  const { items, agregar } = useCart()
+  const [agregado, setAgregado] = useState(false)
+  const estado = estadoStock(producto.stock)
+  const enCarrito = items.find((i) => i.id === producto.id)?.cantidad ?? 0
+  const sinUnidades = producto.stock - enCarrito <= 0
+
+  function manejarAgregar() {
+    agregar(producto, 1)
+    setAgregado(true)
+    setTimeout(() => setAgregado(false), 1200)
+  }
+
+  const etiquetaBoton =
+    estado.tipo === 'agotado'
+      ? `${producto.nombre}: agotado`
+      : sinUnidades
+        ? `${producto.nombre}: ya tienes todas las unidades en el carrito`
+        : `Agregar ${producto.nombre} al carrito`
+
   return (
-    <article className={`card${agotado ? ' card--out' : ''}`}>
-      <ProductImage id={producto.id} nombre={producto.nombre} imagen={producto.imagen} />
+    <article className={`card${estado.tipo === 'agotado' ? ' card--out' : ''}`}>
+      <Link to={`/producto/${producto.id}`} className="card__media" aria-label={`Ver detalle de ${producto.nombre}`}>
+        <ProductImage id={producto.id} nombre={producto.nombre} imagen={producto.imagen} decorativo />
+        {estado.etiqueta && <span className={`badge badge--${estado.tipo}`}>{estado.etiqueta}</span>}
+      </Link>
       <div className="card__body">
-        <span className="card__cat">{producto.categoria}</span>
-        <h3 className="card__title">{producto.nombre}</h3>
-        <p className="card__price">{formatearMoneda(producto.precio)}</p>
-        {agotado && <span className="badge badge--out">Agotado</span>}
-        {!agotado && producto.stock <= 3 && (
-          <span className="badge badge--low">Quedan {producto.stock}</span>
-        )}
-        <Link to={`/producto/${producto.id}`} className="btn btn--secondary">
-          Ver detalle
-        </Link>
+        <h3 className="card__title">
+          <Link to={`/producto/${producto.id}`}>{producto.nombre}</Link>
+        </h3>
+        <p className="card__desc">{producto.descripcion}</p>
+        <div className="card__foot">
+          <div>
+            <p className="card__price">{formatearMoneda(producto.precio)}</p>
+            <p className={`stock stock--${estado.tipo}`}>{estado.disponibilidad}</p>
+          </div>
+          <button
+            type="button"
+            className="btn-icon"
+            onClick={manejarAgregar}
+            disabled={sinUnidades}
+            aria-label={etiquetaBoton}
+          >
+            {agregado ? <Check size={20} aria-hidden="true" /> : <Plus size={20} aria-hidden="true" />}
+          </button>
+        </div>
       </div>
     </article>
   )
