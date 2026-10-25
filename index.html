@@ -1,15 +1,47 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sqatienda</title>
-    <meta name="description" content="Tienda en línea de ejemplo: catálogo, carrito y proceso de compra." />
-  <title>ByteShop</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ff6a00"><meta name="description" content="Orange: encuentra tu próxima laptop.">
+  <title>Orange — Laptops</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Orange inicio">
+      <span class="brand-mark">o</span>
+      orange<span class="brand-dot">.</span>
+    </a>
+    <nav>
+      <a href="#catalogo">Laptops</a><a href="#beneficios">¿Por qué Orange?</a>
+    </nav>
+    <button id="cart-open" class="cart-button" aria-label="Abrir carrito">
+      Carrito <span id="cart-count">0</span>
+    </button>
+  </header>
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow">LO MÁS NUEVO</p><h1>Todo lo que necesitas<br><span>Esta aquí.</span></h1><p class="hero-text">Laptops diseñadas para estudiar, crear, trabajar y jugar. Encuentra la que quieras.</p><a class="primary-link" href="#catalogo">Explorar laptops <span>↗</span></a><p class="hero-note"></p></div><div class="hero-art" aria-label="Ilustración de una laptop naranja" role="img"><div class="laptop-screen"><div class="screen-glow"></div><div class="screen-logo">o<span>.</span></div></div><div class="laptop-base"></div><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><span class="floating-chip">ORANGE / 01</span></div></section>
+    <section id="catalogo" class="catalog section-wrap"><div class="section-heading"><div><p class="eyebrow">ELIGE TU EQUIPO</p><h2>Encuentra tu laptop.</h2></div><p class="muted">Tecnología que se adapta a ti.</p></div>
+      <div class="catalog-tools"><label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="Buscar por nombre o palabra clave" aria-label="Buscar productos"></label><label class="filter-label">Categoría <select id="category"><option>Todas</option></select></label><label class="filter-label">Ordenar <select id="sort"><option value="featured">Destacados</option><option value="low">Precio: menor a mayor</option><option value="high">Precio: mayor a menor</option><option value="name">Nombre A–Z</option></select></label></div>
+      <div id="catalog-status" class="status-line" role="status"></div><div id="products" class="product-grid" aria-live="polite"><p>Cargando catálogo…</p></div>
+    </section>
+    <section id="beneficios" class="benefits section-wrap"><div><span class="benefit-icon">✳</span><h3>Simple por diseño.</h3><p>Encuentra y compara equipos sin complicaciones.</p></div><div><span class="benefit-icon">⌁</span><h3>Información clara.</h3><p>Precios, IVA y existencias visibles durante tu compra.</p></div><div><span class="benefit-icon">◷</span><h3>Tú tienes el control.</h3><p>Revisa tus datos y el resumen antes de llegar al pago demostrativo.</p></div></section>
+    <footer><a class="brand footer-brand" href="#inicio"><span class="brand-mark">o</span>orange<span class="brand-dot">.</span></a><p>Una experiencia de compra de demostración. No se procesan pagos reales.</p><span>© 2026 Orange Store</span></footer>
+  </main>
+  <div id="overlay" class="overlay hidden"></div>
+  <aside id="cart-panel" class="cart-panel" aria-label="Carrito de compras" aria-hidden="true">
+    <div class="panel-heading">
+      <div><p class="eyebrow">TUS ARTUCULOS</p><h2>Tu Carrito<span id="cart-title-count"></span></h2>
+      </div>
+      <button id="cart-close" class="icon-button" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div id="cart-summary" class="cart-summary"></div>
+    <button id="checkout-start" class="primary-button full" disabled>Continuar con la compra <span>→</span>
+    </button><p class="tiny-note">El total incluye IVA. El pago real no está habilitado.</p>
+  </aside>
+  <section id="checkout-modal" class="checkout-modal hidden" role="dialog" aria-modal="true" aria-labelledby="checkout-title"><div class="checkout-header"><div><p class="eyebrow">COMPRA SEGURA · DEMOSTRACIÓN</p><h2 id="checkout-title">Completa tu compra.</h2></div><button id="checkout-close" class="icon-button" aria-label="Cerrar">×</button></div><div class="steps" id="steps"><span class="step active">1 <b>Entrega</b></span><i></i><span class="step">2 <b>Revisión</b></span><i></i><span class="step">3 <b>Pago</b></span></div><div id="checkout-content"></div><div id="checkout-alert" class="alert hidden" role="alert"></div></section>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
 </html>
