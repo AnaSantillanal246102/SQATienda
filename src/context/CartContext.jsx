@@ -1,49 +1,66 @@
-import { createContext, useContext, useEffect, useReducer } from 'react'
-import { cartReducer } from '../utils/cartReducer'
-import { obtenerProductos } from '../services/productService'
+// src/context/CartContext.jsx
+import { createContext, useContext, useEffect, useState } from 'react'
 
-const CartContext = createContext(null)
-const CLAVE = 'tienda-carrito'
+export const CartContext = createContext(null)
 
-function cargarCarrito() {
+const CLAVE = 'carrito'
+
+function leerGuardado() {
   try {
-    const guardado = localStorage.getItem(CLAVE)
-    const datos = guardado ? JSON.parse(guardado) : []
-    return Array.isArray(datos) ? datos : []
+    const guardado = JSON.parse(localStorage.getItem(CLAVE))
+    return Array.isArray(guardado) ? guardado : []
   } catch {
     return []
   }
 }
 
 export function CartProvider({ children }) {
-  const [items, dispatch] = useReducer(cartReducer, [], cargarCarrito)
+  const [items, setItems] = useState(leerGuardado)
 
   useEffect(() => {
-    dispatch({ type: 'SINCRONIZAR', productos: obtenerProductos() })
-  }, [])
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(CLAVE, JSON.stringify(items))
-    } catch {
-      // si el almacenamiento falla, la app sigue funcionando
-    }
+    localStorage.setItem(CLAVE, JSON.stringify(items))
   }, [items])
 
-  const value = {
-    items,
-    cantidadTotal: items.reduce((suma, i) => suma + i.cantidad, 0),
-    agregar: (producto, cantidad) => dispatch({ type: 'AGREGAR', producto, cantidad }),
-    cambiar: (id, cantidad) => dispatch({ type: 'CAMBIAR', id, cantidad }),
-    quitar: (id) => dispatch({ type: 'QUITAR', id }),
-    vaciar: () => dispatch({ type: 'VACIAR' }),
+  // producto = objeto completo que viene de la API
+  const agregar = (producto, cantidad = 1) => {
+    setItems((prev) => {
+      const existente = prev.find((i) => i.id === producto.id)
+      if (existente) {
+        return prev.map((i) =>
+          i.id === producto.id
+            ? { ...i, cantidad: Math.min(i.cantidad + cantidad, i.stock ?? Infinity) }
+            : i
+        )
+      }
+      return [...prev, { ...producto, cantidad: Math.min(cantidad, producto.stock ?? Infinity) }]
+    })
   }
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>
+  // cantidad = nueva cantidad total del producto
+  const cambiar = (id, cantidad) => {
+    setItems((prev) =>
+      prev.map((i) =>
+        i.id === id
+          ? { ...i, cantidad: Math.max(1, Math.min(cantidad, i.stock ?? Infinity)) }
+          : i
+      )
+    )
+  }
+
+  const quitar = (id) => setItems((prev) => prev.filter((i) => i.id !== id))
+  const vaciar = () => setItems([])
+
+  const cantidadTotal = items.reduce((suma, i) => suma + i.cantidad, 0)
+
+  return (
+    <CartContext.Provider value={{ items, agregar, cambiar, quitar, vaciar, cantidadTotal }}>
+      {children}
+    </CartContext.Provider>
+  )
 }
 
 export function useCart() {
-  const ctx = useContext(CartContext)
-  if (!ctx) throw new Error('useCart debe usarse dentro de CartProvider')
-  return ctx
+  const context = useContext(CartContext)
+  if (!context) throw new Error('useCart debe usarse dentro de un CartProvider')
+  return context
 }
