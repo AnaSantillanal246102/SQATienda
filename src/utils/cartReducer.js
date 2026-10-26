@@ -6,7 +6,7 @@
 /**
  * Función reductora para gestionar el estado del carrito de compras.
  * @param {Array} items Lista actual de elementos en el carrito.
- * @param {Object} action Objeto de acción que define la operación a realizar ('AGREGAR', 'CAMBIAR', 'QUITAR', 'VACIAR', 'SINCRONIZAR').[cite: 1]
+ * @param {Object} action Objeto de acción que define la operación a realizar ('AGREGAR', 'CAMBIAR', 'QUITAR', 'VACIAR', 'SINCRONIZAR').
  * @return {Array} La nueva lista de elementos del carrito actualizada según la acción.
  */
 export function cartReducer(items, action) {
