@@ -36,7 +36,12 @@ export function calcularTotales(items) {
   return { subtotal, iva, total }
 }
 
-// Valida que los artículos del carrito sigan disponibles
+/**
+ * Valida los elementos del carrito contra el catálogo de productos disponible.
+ * @param {Array} items Elementos actuales en el carrito.[cite: 1]
+ * @param {Array} productos Catálogo de productos disponibles con stock e ID.
+ * @return {Array<string>} Una lista de mensajes con los problemas encontrados, si los hay.
+ */
 export function validarCarrito(items, productos) {
   const problemas = []
 

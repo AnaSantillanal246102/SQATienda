@@ -1,6 +1,14 @@
+
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
+/**
+ * Mapa de rutas y títulos que se muestran en la pestaña del navegador.
+ *
+ * @author Ana Santillan
+ * @version 1.0
+ * @see RouteEffects
+ */
 const TITULOS = {
   '/': 'Catálogo',
   '/carrito': 'Carrito',
@@ -9,10 +17,28 @@ const TITULOS = {
   '/pago': 'Pago',
 }
 
+/**
+ * Componente que gestiona los efectos secundarios al cambiar de ruta.
+ * Actualiza el título de la pestaña del navegador, desplaza la página
+ * al inicio y mueve el foco al contenido principal cuando corresponde.
+ * En la carga inicial evita mover el foco y respeta la interacción
+ * con los elementos de búsqueda.
+ *
+ * @returns {null} No renderiza elementos en la interfaz.
+ * @see useLocation
+ * @see useEffect
+ * @see useRef
+ */
 export default function RouteEffects() {
   const { pathname } = useLocation()
   const primera = useRef(true)
 
+  /**
+   * Actualiza el título del documento y gestiona el desplazamiento
+   * y el foco de accesibilidad cuando cambia la ruta actual.
+   *
+   * @returns {void} No devuelve ningún valor.
+   */
   useEffect(() => {
     const titulo =
       TITULOS[pathname] ??
