@@ -9,7 +9,7 @@ import CheckoutPage from './pages/CheckoutPage'
 import SummaryPage from './pages/SummaryPage'
 import PaymentPage from './pages/PaymentPage'
 import NotFoundPage from './pages/NotFoundPage'
-import InventarioPage from './pages/InventarioPage'
+import FinishedPage from "./pages/FinishedPage";
 
 export default function App() {
   return (
@@ -25,12 +25,15 @@ export default function App() {
           <Route path="/datos" element={<CheckoutPage />} />
           <Route path="/resumen" element={<CheckoutGuard><SummaryPage /></CheckoutGuard>} />
           <Route path="/pago" element={<CheckoutGuard><PaymentPage /></CheckoutGuard>} />
-          <Route path="/inventario" element={<InventarioPage />} />
+          <Route path="/finalizado" element={<FinishedPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <footer className="footer">
-        SQAShop — Tienda de demostración. El servicio de pago no está disponible. No se realizan cobros
+      <a class="brandj footer-brand" href="#inicio">
+        mora<span class="brandj-dot">.</span>
+      </a>
+      <span>© 2026 Mora Store</span>
       </footer>
     </>
   )
