@@ -250,19 +250,6 @@ export default function CatalogPage() {
         </div>
 
         {/* Buscador */}
-        <div className="toolbar">
-          <label htmlFor="buscar-productos" className="sr-only">
-            Buscar productos
-          </label>
-
-          <input
-            id="buscar-productos"
-            type="search"
-            placeholder="Buscar productos..."
-            value={texto}
-            onChange={(e) => cambiarBusqueda(e.target.value)}
-          />
-        </div>
 
         {/* Filtros por categoría */}
         <div
