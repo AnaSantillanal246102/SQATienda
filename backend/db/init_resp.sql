@@ -1,19 +1,56 @@
--- backend/db/init.sql
 
--- Crear la tabla
+-- ============================================================
+-- Archivo: backend/db/init.sql
+-- Descripción: Crea la tabla productos e inserta los datos
+--              iniciales de MoraShop.
+-- Autor: Jared Martinez
+-- Versión: 1.0
+-- Desde: 10/24/2028
+-- ============================================================
+
+-- Crear la tabla productos si todavía no existe.
 CREATE TABLE IF NOT EXISTS productos (
+    -- Identificador único autoincremental de cada producto.
     id SERIAL PRIMARY KEY,
+
+    -- Nombre del producto. Es obligatorio.
     nombre VARCHAR(255) NOT NULL,
+
+    -- Categoría a la que pertenece el producto. Es obligatoria.
     categoria VARCHAR(100) NOT NULL,
+
+    -- Precio del producto con dos decimales. Es obligatorio.
     precio DECIMAL(10, 2) NOT NULL,
+
+    -- Cantidad disponible en inventario. Por defecto es cero.
     stock INTEGER NOT NULL DEFAULT 0,
+
+    -- Descripción detallada del producto.
     descripcion TEXT,
+
+    -- Ruta de la imagen del producto.
     imagen VARCHAR(255),
+
+    -- Indica si el producto aparece como destacado.
+    -- Por defecto, el producto no está destacado.
     destacado BOOLEAN DEFAULT FALSE
 );
 
--- Insertar los 25 productos de tu JSON
-INSERT INTO productos (id, nombre, categoria, precio, stock, descripcion, imagen, destacado) VALUES
+-- ============================================================
+-- Insertar los 25 productos iniciales del catálogo.
+-- Se especifican los valores de cada columna de la tabla.
+-- ============================================================
+
+INSERT INTO productos (
+    id,
+    nombre,
+    categoria,
+    precio,
+    stock,
+    descripcion,
+    imagen,
+    destacado
+) VALUES
 (1, 'NovaBook Ultra 17', 'Laptops', 38999, 5, 'Laptop de 17 pulgadas que reemplaza a una de escritorio, Ryzen 9, 32 GB RAM, SSD de 1 TB.', '/img/productos/1.jpg', false),
 (2, 'NovaBook Lite 11', 'Laptops', 6499, 0, 'Laptop compacta de 11.6 pulgadas para estudiantes, 4 GB RAM, 64 GB eMMC.', '/img/productos/2.jpg', false),
 (3, 'NovaBook Studio 15', 'Laptops', 47999, 3, 'Estación de trabajo de 15.6 pulgadas, Intel Core i7, 64 GB RAM, SSD de 2 TB, GPU RTX.', '/img/productos/3.jpg', false),
@@ -40,5 +77,13 @@ INSERT INTO productos (id, nombre, categoria, precio, stock, descripcion, imagen
 (24, 'NovaClick Pro Wireless', 'Mouse', 1299, 22, 'Mouse inalámbrico ergonómico, sensor de 26K DPI, 70 h de batería y USB-C.', '/img/productos/24.jpg', false),
 (25, 'NovaSound Buds Pro', 'Audio', 1599, 0, 'Audífonos inalámbricos con cancelación de ruido, carga inalámbrica e IPX5.', '/img/productos/25.jpg', false);
 
--- Ajustar la secuencia del ID para que el próximo producto insertado automáticamente sea el 26
-SELECT setval('productos_id_seq', (SELECT MAX(id) FROM productos));
+-- ============================================================
+-- Ajustar la secuencia del identificador.
+-- Permite que el siguiente producto insertado automáticamente
+-- reciba el ID 26, después de insertar los 25 productos.
+-- ============================================================
+
+SELECT setval(
+    'productos_id_seq',
+    (SELECT MAX(id) FROM productos)
+);
