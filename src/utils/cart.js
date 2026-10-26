@@ -7,6 +7,7 @@
  * Tasa de IVA estándar aplicable.
  */
 export const IVA = 0.16
+
 /**
  * Redondea un número a dos decimales utilizando EPSILON para mayor precisión.
  * @param {number} n El número que se desea redondear.
@@ -15,6 +16,7 @@ export const IVA = 0.16
 export function redondear(n) {
   return Math.round((n + Number.EPSILON) * 100) / 100
 }
+
 /**
  * Calcula el subtotal, el IVA y el total de una lista de elementos en el carrito.
  * @param {Array} items Lista de elementos del carrito con precio y cantidad.

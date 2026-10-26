@@ -1,7 +1,19 @@
+/**
+ * @author Ana Paula Santillan Nuñez
+ * @version 1.0.0
+ */
+
 import { Computer, Cpu, Headphones, Keyboard, Laptop, Monitor, Mouse, Tablet } from 'lucide-react'
 
+/**
+ * Gradiente de fondo predeterminado utilizado por defecto en la interfaz.
+ */
 export const FONDO_DEFECTO = 'linear-gradient(135deg, #e2e8f0, #cbd5e1)'
 
+/**
+ * Catálogo de categorías de productos disponibles, asociando a cada una su icono de Lucide
+ * y un estilo de gradiente de fondo personalizado.
+ */
 export const CATEGORIAS = {
   Laptops: { Icono: Laptop, fondo: 'linear-gradient(135deg, #e0e7ff, #c7d2fe)' },
   Desktops: { Icono: Computer, fondo: 'linear-gradient(135deg, #dbeafe, #bfdbfe)' },
