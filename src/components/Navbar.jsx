@@ -18,7 +18,9 @@ export default function Navbar() {
       <div className="navbar__inner">
         <Link to="/" className="brand">
         <img src="/img/robot-head.png" alt="" className="brand__logo" width="44" height="44" />
-        SQAShop
+        <span className="topbarj" href="#inicio"><span className="brandj" href="#inicio" aria-label="Mora inicio">
+      mora<span className="brandj-dot">.</span>
+    </span></span>
         </Link>
 
         <form className="searchbar" role="search" onSubmit={(e) => e.preventDefault()}>
