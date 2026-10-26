@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
@@ -7,6 +8,25 @@ import OrderTotals from '../components/OrderTotals'
 import StepIndicator from '../components/StepIndicator'
 import EmptyState from '../components/EmptyState'
 
+/**
+ * Página del carrito de compras.
+ *
+ * Permite visualizar los productos agregados, modificar sus cantidades,
+ * eliminar productos, vaciar el carrito y consultar el resumen del pedido.
+ * También permite continuar al formulario de datos de entrega.
+ *
+ * Si el carrito está vacío, muestra un mensaje informativo y un enlace
+ * para regresar al catálogo de productos.
+ *
+ * @author Jared Beltran
+ * @version 1.0
+ * @returns {JSX.Element} Página del carrito o mensaje de carrito vacío.
+ * @see useCart
+ * @see CartItem
+ * @see OrderTotals
+ * @see StepIndicator
+ * @see EmptyState
+ */
 export default function CartPage() {
   const { items, cambiar, quitar, vaciar } = useCart()
   const navigate = useNavigate()

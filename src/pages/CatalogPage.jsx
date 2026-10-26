@@ -19,13 +19,43 @@ import ProductCard from '../components/ProductCard'
 import EmptyState from '../components/EmptyState'
 import Hero from '../components/Hero'
 
-// Ignorar mayúsculas y acentos en las búsquedas
+/**
+ * Normaliza un texto para facilitar las búsquedas.
+ * Convierte el texto a minúsculas y elimina los acentos
+ * para permitir coincidencias sin distinguir entre ellos.
+ *
+ * @author Jonathan Trejo
+ * @version 1.0
+ * @param {string} [texto=''] - Texto que se desea normalizar.
+ * @returns {string} Texto en minúsculas y sin acentos.
+ */
 const normalizar = (texto = '') =>
   String(texto)
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
 
+/**
+ * Página principal del catálogo de productos.
+ *
+ * Obtiene los productos, las categorías y los productos destacados
+ * desde el servicio correspondiente. Permite buscar productos,
+ * filtrarlos por categoría y ordenarlos por nombre o precio.
+ *
+ * También gestiona los estados de carga y error, muestra la portada,
+ * presenta los resultados y ofrece información sobre los beneficios
+ * de la tienda.
+
+ * @returns {JSX.Element} Página del catálogo con buscador, filtros,
+ * productos destacados y resultados.
+ * @see obtenerProductos
+ * @see obtenerCategorias
+ * @see obtenerDestacados
+ * @see ordenarProductos
+ * @see ProductCard
+ * @see EmptyState
+ * @see Hero
+ */
 export default function CatalogPage() {
   const [params, setParams] = useSearchParams()
 
@@ -41,7 +71,19 @@ export default function CatalogPage() {
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
 
-  // Cargar datos del backend
+  /**
+   * Obtiene los productos, las categorías y los destacados
+   * desde el backend al montar el componente.
+   *
+   * Actualiza los estados correspondientes y controla los errores
+   * de carga. Evita actualizar el estado si el componente
+   * se desmonta antes de finalizar las solicitudes.
+   *
+   * @returns {void} No devuelve ningún valor directamente.
+   * @see obtenerProductos
+   * @see obtenerCategorias
+   * @see obtenerDestacados
+   */
   useEffect(() => {
     let activo = true
 
@@ -81,7 +123,12 @@ export default function CatalogPage() {
     }
   }, [])
 
-  // Buscar, filtrar y ordenar productos
+  /**
+   * Filtra los productos por categoría y texto de búsqueda,
+   * y ordena los resultados según el criterio seleccionado.
+   *
+   * @type {Array}
+   */
   const lista = useMemo(() => {
     const t = normalizar(texto.trim())
 
@@ -101,8 +148,23 @@ export default function CatalogPage() {
     return ordenarProductos(filtrados, orden)
   }, [productos, texto, categoria, orden])
 
+  /**
+   * Indica si existe una búsqueda de texto o un filtro
+   * de categoría activo.
+   *
+   * @type {boolean}
+   */
   const hayFiltros = texto.trim() !== '' || categoria !== ''
 
+  /**
+   * Actualiza el parámetro de búsqueda "q" en la URL.
+   * Si el texto está vacío, elimina el parámetro.
+   * Reemplaza la entrada actual del historial para evitar
+   * crear una entrada por cada cambio de búsqueda.
+   *
+   * @param {string} valor - Texto introducido por el usuario.
+   * @returns {void} No devuelve ningún valor.
+   */
   function cambiarBusqueda(valor) {
     setParams((actuales) => {
       const nuevos = new URLSearchParams(actuales)
@@ -117,6 +179,12 @@ export default function CatalogPage() {
     }, { replace: true })
   }
 
+  /**
+   * Restablece el filtro de categoría y elimina los parámetros
+   * de búsqueda de la URL.
+   *
+   * @returns {void} No devuelve ningún valor.
+   */
   function limpiar() {
     setCategoria('')
     setParams({})

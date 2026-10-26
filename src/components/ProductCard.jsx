@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Check, Plus } from 'lucide-react'
@@ -5,6 +6,26 @@ import ProductImage from './ProductImage'
 import { useCart } from '../context/CartContext'
 import { estadoStock, formatearMoneda } from '../utils/format'
 
+/**
+ * Componente que muestra una tarjeta con la información de un producto.
+ * Incluye su imagen, nombre, descripción, precio y disponibilidad.
+ * Permite agregar el producto al carrito y muestra una confirmación visual.
+ *
+ * @author Ana Santillan
+ * @version 2.0
+ * @param {Object} producto - Objeto que contiene la información del producto.
+ * @param {number|string} producto.id - Identificador único del producto.
+ * @param {string} producto.nombre - Nombre del producto.
+ * @param {string} producto.descripcion - Descripción del producto.
+ * @param {number} producto.precio - Precio unitario del producto.
+ * @param {number} producto.stock - Cantidad de unidades disponibles.
+ * @param {string} producto.imagen - Ruta o referencia de la imagen del producto.
+ * @returns {JSX.Element} Tarjeta del producto con información y botón para agregarlo al carrito.
+ * @see ProductImage
+ * @see useCart
+ * @see estadoStock
+ * @see formatearMoneda
+ */
 export default function ProductCard({ producto }) {
   const { items, agregar } = useCart()
   const [agregado, setAgregado] = useState(false)
@@ -12,6 +33,13 @@ export default function ProductCard({ producto }) {
   const enCarrito = items.find((i) => i.id === producto.id)?.cantidad ?? 0
   const sinUnidades = producto.stock - enCarrito <= 0
 
+  /**
+   * Agrega una unidad del producto al carrito y muestra
+   * una confirmación visual durante 1200 milisegundos.
+   *
+   * @returns {void} No devuelve ningún valor.
+   * @see useCart
+   */
   function manejarAgregar() {
     agregar(producto, 1)
     setAgregado(true)
