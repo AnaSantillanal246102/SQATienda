@@ -7,7 +7,6 @@ const TITULOS = {
   '/datos': 'Datos de entrega',
   '/resumen': 'Resumen de compra',
   '/pago': 'Pago',
-  '/finalizado': 'Demostración finalizada',
 }
 
 export default function RouteEffects() {

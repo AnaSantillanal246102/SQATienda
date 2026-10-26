@@ -4,7 +4,6 @@ import { Check, Plus } from 'lucide-react'
 import ProductImage from './ProductImage'
 import { useCart } from '../context/CartContext'
 import { estadoStock, formatearMoneda } from '../utils/format'
-import { useToast } from '../context/ToastContext'
 
 export default function ProductCard({ producto }) {
   const { items, agregar } = useCart()
@@ -12,15 +11,12 @@ export default function ProductCard({ producto }) {
   const estado = estadoStock(producto.stock)
   const enCarrito = items.find((i) => i.id === producto.id)?.cantidad ?? 0
   const sinUnidades = producto.stock - enCarrito <= 0
-  const mostrar = useToast()   // junto a los otros hooks
 
   function manejarAgregar() {
     agregar(producto, 1)
-    mostrar(`${producto.nombre} se agregó al carrito.`)
     setAgregado(true)
     setTimeout(() => setAgregado(false), 1200)
   }
-
 
   const etiquetaBoton =
     estado.tipo === 'agotado'
